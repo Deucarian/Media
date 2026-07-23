@@ -1,0 +1,22 @@
+{
+  "name": "Deucarian.Media.Unity",
+  "rootNamespace": "Deucarian.Media.Unity",
+  "references": [
+    "Deucarian.Media",
+    "Deucarian.Common",
+    "UnityEngine.AudioModule",
+    "UnityEngine.UnityWebRequestModule",
+    "UnityEngine.UnityWebRequestAudioModule",
+    "UnityEngine.VideoModule"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}
+

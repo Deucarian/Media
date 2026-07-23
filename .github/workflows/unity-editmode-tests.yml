@@ -1,0 +1,49 @@
+name: Unity EditMode Tests
+
+on:
+  workflow_dispatch:
+
+jobs:
+  editmode:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Create package test project manifest
+        shell: bash
+        run: |
+          mkdir -p Media-TestProject/Packages Media-TestProject/Assets Media-TestProject/ProjectSettings
+          printf '%s\n' '{"m_EditorVersion":"2022.3.62f3"}' > Media-TestProject/ProjectSettings/ProjectVersion.txt
+          package_path="${GITHUB_WORKSPACE}"
+          cat > Media-TestProject/Packages/manifest.json <<JSON
+          {
+            "dependencies": {
+              "com.deucarian.common": "https://github.com/Deucarian/Common.git#main",
+              "com.deucarian.media": "file:${package_path}",
+              "com.unity.test-framework": "1.1.33"
+            },
+            "testables": [
+              "com.deucarian.media"
+            ]
+          }
+          JSON
+
+      - name: Run EditMode tests
+        uses: game-ci/unity-test-runner@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          projectPath: Media-TestProject
+          unityVersion: 2021.3.45f1
+          testMode: editmode
+
+      - name: Upload test artifacts
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: unity-editmode-test-results
+          path: artifacts

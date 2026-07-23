@@ -1,0 +1,17 @@
+{
+  "name": "Deucarian.Media.Samples.TypedMediaSource",
+  "rootNamespace": "Deucarian.Media.Samples",
+  "references": [
+    "Deucarian.Media"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": true
+}
+

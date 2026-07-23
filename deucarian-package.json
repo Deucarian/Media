@@ -1,0 +1,32 @@
+{
+  "packageId": "com.deucarian.media",
+  "displayName": "Deucarian Media",
+  "samplePolicy": "compiled-example",
+  "ownedCapabilities": [
+    "media-loading",
+    "media-playback"
+  ],
+  "runtimeAssemblies": [
+    "Deucarian.Media",
+    "Deucarian.Media.Unity"
+  ],
+  "editorAssemblies": [],
+  "sampleAssemblies": [
+    "Deucarian.Media.Samples.TypedMediaSource"
+  ],
+  "testAssemblies": [
+    "Deucarian.Media.Tests"
+  ],
+  "requiredDependencies": [
+    "com.deucarian.common",
+    "com.unity.modules.audio",
+    "com.unity.modules.unitywebrequest",
+    "com.unity.modules.unitywebrequestaudio",
+    "com.unity.modules.video"
+  ],
+  "optionalVersionDefinedDependencies": [],
+  "allowedDirectDebugCalls": [],
+  "allowedDirectUnityObjectLifetimeCalls": [],
+  "expectedSamplesRoot": "Samples~"
+}
+
