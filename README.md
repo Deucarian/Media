@@ -2,6 +2,14 @@
 
 Reusable typed media loading and playback primitives for Unity projects.
 
+## Short UI audio output
+
+`UnityAudioOneShotOutput` is the package-owned Unity adapter for short,
+overlapping feedback clips. It keeps concrete `AudioSource` playback in Media
+while semantic role and palette ownership remains in Theming. The output uses
+a small voice pool so each request can keep its own pitch. Missing clips are a
+safe no-op.
+
 Current package version: `0.1.0`
 
 ## Responsibilities
