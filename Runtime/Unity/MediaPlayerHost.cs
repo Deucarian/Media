@@ -38,7 +38,7 @@ namespace Deucarian.Media.Unity
 
         public async Task<MediaPlaybackPrepareResult> PlayAsync(string url, CancellationToken cancellationToken = default)
         {
-            if (!isActiveAndEnabled) throw new InvalidOperationException("The media player must be enabled.");
+            if (!isActiveAndEnabled) throw new InvalidOperationException("MediaPlayerHost '" + name + "' is disabled. Enable its GameObject and component before calling PlayAsync.");
             var source = new MediaSource(url, kind);
             Stop();
             int operation = generation;
@@ -49,7 +49,7 @@ namespace Deucarian.Media.Unity
                 if (cancellation.IsCancellationRequested) return MediaPlaybackPrepareResult.CancelledResult();
                 if (kind == MediaKind.Video)
                 {
-                    if (videoOutput == null) return MediaPlaybackPrepareResult.Failure("Assign a video RenderTexture output.");
+                    if (videoOutput == null) return MediaPlaybackPrepareResult.Failure("MediaPlayerHost '" + name + "' has no video output. Assign a RenderTexture in the Inspector or call ConfigureVideo before playback.");
                     video = video ?? new UnityVideoPlaybackSessionFactory().Create(gameObject);
                     var result = await video.PrepareAsync(new MediaPlaybackPrepareRequest<RenderTexture>(source, videoOutput), cancellation.Token);
                     if (operation != generation || cancellation.IsCancellationRequested) return MediaPlaybackPrepareResult.CancelledResult();
