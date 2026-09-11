@@ -10,10 +10,14 @@
     "Deucarian.Media",
     "Deucarian.Media.Unity"
   ],
-  "editorAssemblies": [],
+  "editorAssemblies": [
+    "Deucarian.Media.Editor"
+  ],
   "sampleAssemblies": [
+    "Deucarian.Media.Samples.SimpleUsage",
     "Deucarian.Media.Samples.TypedMediaSource",
-    "Deucarian.Media.Samples.SimpleUsage"
+    "Deucarian.Media.Unity.Samples.DefinitionWorkflow",
+    "Deucarian.Samples.Media.DefinitionDeclarations"
   ],
   "testAssemblies": [
     "Deucarian.Media.Tests"
@@ -23,7 +27,8 @@
     "com.unity.modules.audio",
     "com.unity.modules.unitywebrequest",
     "com.unity.modules.unitywebrequestaudio",
-    "com.unity.modules.video"
+    "com.unity.modules.video",
+    "com.deucarian.editor"
   ],
   "optionalVersionDefinedDependencies": [],
   "allowedDirectDebugCalls": [],

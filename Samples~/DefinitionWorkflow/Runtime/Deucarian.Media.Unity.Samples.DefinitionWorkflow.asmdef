@@ -1,0 +1,7 @@
+{
+  "name": "Deucarian.Media.Unity.Samples.DefinitionWorkflow",
+  "references": [
+    "Deucarian.Media",
+    "Deucarian.Media.Unity"
+  ]
+}
