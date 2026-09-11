@@ -1,0 +1,9 @@
+{
+  "name": "Deucarian.Media.Samples.SimpleUsage",
+  "references": [
+    "Deucarian.Media",
+    "Deucarian.Media.Unity"
+  ],
+  "autoReferenced": false,
+  "noEngineReferences": false
+}

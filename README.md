@@ -1,5 +1,7 @@
 # Deucarian Media
 
+For simple calls and setup, see [Simple usage](Documentation~/SimpleUsage.md).
+
 Reusable typed media loading and playback primitives for Unity projects.
 
 ## Short UI audio output
