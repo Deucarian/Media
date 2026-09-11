@@ -12,7 +12,8 @@
   ],
   "editorAssemblies": [],
   "sampleAssemblies": [
-    "Deucarian.Media.Samples.TypedMediaSource"
+    "Deucarian.Media.Samples.TypedMediaSource",
+    "Deucarian.Media.Samples.SimpleUsage"
   ],
   "testAssemblies": [
     "Deucarian.Media.Tests"
@@ -29,4 +30,3 @@
   "allowedDirectUnityObjectLifetimeCalls": [],
   "expectedSamplesRoot": "Samples~"
 }
-

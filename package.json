@@ -32,7 +32,11 @@
       "displayName": "Typed Media Source",
       "description": "Compiled example creating typed image, audio, video, and text media sources.",
       "path": "Samples~/TypedMediaSource"
+    },
+    {
+      "displayName": "Simple Usage",
+      "description": "Minimal calls through the configured package host.",
+      "path": "Samples~/SimpleUsage"
     }
   ]
 }
-
