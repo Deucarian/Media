@@ -1,0 +1,5 @@
+{
+  "name": "Deucarian.Samples.Media.DefinitionDeclarations",
+  "references": ["Deucarian.Editor", "Deucarian.Media", "Deucarian.Media.Editor"],
+  "includePlatforms": ["Editor"]
+}

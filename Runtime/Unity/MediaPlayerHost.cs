@@ -12,6 +12,8 @@ namespace Deucarian.Media.Unity
         [SerializeField] private MediaKind kind = MediaKind.Audio;
         [SerializeField] private AudioType audioType = AudioType.UNKNOWN;
         [SerializeField] private RenderTexture videoOutput;
+        [SerializeField] private MediaDefinitionCatalog definitionCatalog;
+        private bool directClip;
         private IMediaLoader<UnityAudioLoadRequest, AudioClip> audioLoader = new UnityAudioClipMediaLoader();
         private IMediaPlaybackSession<RenderTexture> video;
         private MediaLoadResult<AudioClip> audioResult;
@@ -34,6 +36,20 @@ namespace Deucarian.Media.Unity
             Stop();
             videoOutput = output;
             kind = MediaKind.Video;
+        }
+
+        public Task<MediaPlaybackPrepareResult> PlayAsync(MediaKey key, CancellationToken cancellationToken = default)
+        {
+            if (!isActiveAndEnabled) throw new InvalidOperationException("Enable MediaPlayerHost before playing media.");
+            var definition = (definitionCatalog != null ? definitionCatalog : MediaDefinitionCatalog.LoadProject()).Get(key);
+            if (cancellationToken.IsCancellationRequested) return Task.FromResult(MediaPlaybackPrepareResult.CancelledResult());
+            Stop();
+            kind = definition.Kind; audioType = definition.AudioType;
+            var output = GetComponent<AudioSource>();
+            output.loop = definition.Loop; output.volume = definition.Volume;
+            if (definition.Clip == null) return PlayAsync(definition.Url, cancellationToken);
+            directClip = true; output.clip = definition.Clip; output.Play();
+            return Task.FromResult(MediaPlaybackPrepareResult.Success(0, 0, definition.Clip.length));
         }
 
         public async Task<MediaPlaybackPrepareResult> PlayAsync(string url, CancellationToken cancellationToken = default)
@@ -91,7 +107,8 @@ namespace Deucarian.Media.Unity
             cancellation?.Cancel();
             video?.Stop();
             var output = GetComponent<AudioSource>();
-            if (output != null && audioResult != null) { output.Stop(); output.clip = null; }
+            if (output != null && (audioResult != null || directClip)) { output.Stop(); output.clip = null; }
+            directClip = false;
             audioResult?.Dispose();
             audioResult = null;
         }

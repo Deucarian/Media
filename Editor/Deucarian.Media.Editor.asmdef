@@ -1,0 +1,11 @@
+{
+  "name": "Deucarian.Media.Editor",
+  "references": [
+    "Deucarian.Media",
+    "Deucarian.Media.Unity",
+    "Deucarian.Editor"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ]
+}

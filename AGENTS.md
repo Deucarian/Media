@@ -17,6 +17,8 @@ It must not own application attachment metadata, API authentication policy,
 ## Dependencies
 
 - `com.deucarian.common`: canonical Unity object lifetime handling.
+- `com.deucarian.editor`: editor-only media definition schemas, typed dropdowns
+  and generation. Core/player assemblies never reference Editor.
 - Unity Audio, Video, UnityWebRequest, and UnityWebRequest Audio modules:
   platform adapters directly use these Unity APIs.
 
