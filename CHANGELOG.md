@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.0 - Unreleased
+
+- Add a caller-owned media preparation queue with frame-budget gates, bounded concurrency, duplicate coalescing, priority selection and cancellation of stale work.
+
 ## [0.2.0] - 2026-09-11
 
 - Add typed reusable definition authoring and/or scoped Inspector components that share the existing C# service behavior.
