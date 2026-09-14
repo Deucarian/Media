@@ -1,6 +1,6 @@
 {
   "name": "com.deucarian.media",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "displayName": "Deucarian Media",
   "description": "Typed media loading, request lifecycle, resource leases, playback contracts, and Unity audio/video adapters.",
   "unity": "2021.3",
