@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.4.0 - Unreleased
+
+- Let selected media interrupt superseded preparation and pause background work until selection clears, preserving cached results and coalesced requests.
+
+## 0.3.0 - Unreleased
+
+- Add a caller-owned media preparation queue with frame-budget gates, bounded concurrency, duplicate coalescing, priority selection and cancellation of stale work.
+
+## [0.2.0] - 2026-09-11
+
+- Add typed reusable definition authoring and/or scoped Inspector components that share the existing C# service behavior.
+- Include a playable Definition Workflow sample with configured hosts, short callers and usage documentation.
+- Align declared package dependencies with the definition-authoring development wave.
+
+
 ## 0.1.0
 
 - Added typed media sources and loader strategies.

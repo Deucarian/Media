@@ -1,5 +1,17 @@
 # Deucarian Media
 
+## Typed definition workflow
+
+One typed media definition holds the clip or URL and audio playback defaults. This scene uses a bundled local clip.
+
+Start with the [Definition Workflow walkthrough](Documentation~/DefinitionWorkflow.md).
+Import **Definition Workflow** in Package Manager for a configured sample scene
+and short caller scripts. Definitions can be edited as assets or editable C# declarations; generated keys
+work in code and Inspector dropdowns.
+
+
+For simple calls and setup, see [Simple usage](Documentation~/SimpleUsage.md).
+
 Reusable typed media loading and playback primitives for Unity projects.
 
 ## Short UI audio output
@@ -10,7 +22,7 @@ while semantic role and palette ownership remains in Theming. The output uses
 a small voice pool so each request can keep its own pitch. Missing clips are a
 safe no-op.
 
-Current package version: `0.1.0`
+Current package version: `0.4.0`
 
 ## Responsibilities
 
