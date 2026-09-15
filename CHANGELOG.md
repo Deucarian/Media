@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.0 - Unreleased
+
+- Let selected media interrupt superseded preparation and pause background work until selection clears, preserving cached results and coalesced requests.
+
 ## 0.3.0 - Unreleased
 
 - Add a caller-owned media preparation queue with frame-budget gates, bounded concurrency, duplicate coalescing, priority selection and cancellation of stale work.
