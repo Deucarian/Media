@@ -8,6 +8,55 @@ namespace Deucarian.Media.Tests
     public sealed class MediaPreparationQueueTests
     {
         [Test]
+        public async Task SelectedItemInterruptsOldAttemptAndBackgroundWaitsUntilSelectionClears()
+        {
+            var oldAttempt = new TaskCompletionSource<bool>();
+            var order = new List<string>();
+            CancellationToken firstToken = default;
+            int attempts = 0;
+            using (var queue = new MediaPreparationQueue<string>(_ => Task.CompletedTask))
+            {
+                Task old = queue.Enqueue("old", token =>
+                {
+                    firstToken = token;
+                    order.Add("old-" + ++attempts);
+                    return attempts == 1 ? oldAttempt.Task : Task.CompletedTask;
+                });
+                Task selected = queue.Enqueue("selected", _ => { order.Add("selected"); return Task.CompletedTask; });
+                Task background = queue.Enqueue("background", _ => { order.Add("background"); return Task.CompletedTask; });
+                queue.Prioritize("selected", true);
+                Assert.True(firstToken.IsCancellationRequested);
+                oldAttempt.SetResult(true); // Even a transport finishing late cannot complete the old request.
+                await selected;
+                Assert.False(old.IsCompleted);
+                Assert.False(background.IsCompleted);
+                Assert.That(order, Is.EqualTo(new[] { "old-1", "selected" }));
+                queue.ClearPriority();
+                await Task.WhenAll(old, background);
+                Assert.That(attempts, Is.EqualTo(2));
+            }
+        }
+
+        [Test]
+        public async Task FocusCanPrecedeEnqueueAndUnrelatedCancellationIsNotRetried()
+        {
+            using (var queue = new MediaPreparationQueue<string>(_ => Task.CompletedTask))
+            {
+                queue.Prioritize("selected", true);
+                Task waiting = queue.Enqueue("background", _ => Task.CompletedTask);
+                await queue.Enqueue("selected", _ => Task.CompletedTask);
+                Assert.False(waiting.IsCompleted);
+                queue.ClearPriority();
+                await waiting;
+                int calls = 0;
+                Task cancelled = queue.Enqueue("cancelled", _ =>
+                { calls++; throw new System.OperationCanceledException(); });
+                try { await cancelled; Assert.Fail(); } catch (System.OperationCanceledException) { }
+                Assert.That(calls, Is.EqualTo(1));
+            }
+        }
+
+        [Test]
         public async Task WorkWaitsForBudgetCoalescesAndPromotesSelection()
         {
             var gate = new TaskCompletionSource<bool>();
