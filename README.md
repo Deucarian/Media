@@ -22,7 +22,7 @@ while semantic role and palette ownership remains in Theming. The output uses
 a small voice pool so each request can keep its own pitch. Missing clips are a
 safe no-op.
 
-Current package version: `0.3.0`
+Current package version: `0.4.0`
 
 ## Responsibilities
 
